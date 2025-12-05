@@ -75,10 +75,41 @@ C:\inetpub\wwwroot
 
 ## **Project Screenshots**
 
--Virtual Network & VM Provisioning
-- Load Balancer Setup & Backend Pool Configuration
-- IIS Installation & Website Deployment
-- HTTP Port Configuration & Final Web Test
+### 1️ Virtual Network & Resource Group  
+- [01_create_resource_group_vnet.png](01_create_resource_group_vnet.png)  
+- [01_create_virtual_network.png](01_create_virtual_network.png)  
+- [01_review_create.png](01_review_create.png)  
+
+### 2️ Virtual Machine Provisioning (VM1 & VM2)  
+- [02_create_virtual_machine_v1.png](02_create_virtual_machine_v1.png)  
+- [02_vm1_set_region.png](02_vm1_set_region.png)  
+- [02_set_image_size.png](02_set_image_size.png)  
+- [02_set_availabilityset_ukset.png](02_set_availabilityset_ukset.png)  
+- [02_set_name_region.png](02_set_name_region.png)  
+- [02_set_username_password.png](02_set_username_password.png)  
+- [02_disable_bootdiagnosis.png](02_disable_bootdiagnosis.png)  
+- [02_review_create.png](02_review_create.png)  
+- [02_create_vm2.png](02_create_vm2.png)  
+
+### 3️ Network & IIS Configuration  
+- [03_connect_via_RDP.png](03_connect_via_RDP.png)  
+- [03_connect_vm.png](03_connect_vm.png)  
+- [03_enter_credentials.png](03_enter_credentials.png)  
+- [03_remote_desktop_connection.png](03_remote_desktop_connection.png)  
+- [03_select_connect.png](03_select_connect.png)  
+- [03_set_http.png](03_set_http.png)  
+
+### 4️ Load Balancer Setup & Backend Pool Configuration  
+- [04_create_loadbalancer.png](04_create_loadbalancer.png)  
+- [04_front_end_ip.png](04_front_end_ip.png)  
+- [04_back_end_pool_add.png](04_back_end_pool_add.png)  
+- [04_bpl_added.png](04_bpl_added.png)  
+- [04_load_balancer_review_create.png](04_load_balancer_review_create.png)  
+- [04_lbrule_added.png](04_lbrule_added.png)  
+- [04_add_load_balancing_rule.png](04_add_load_balancing_rule.png)  
+- [04_copy_public_ip.png](04_copy_public_ip.png)  
+- [04_set_bpl_vnet.png](04_set_bpl_vnet.png)  
+- [04_set_name_region.png](04_set_name_region.png)
 
 ---
 
@@ -96,3 +127,4 @@ C:\inetpub\wwwroot
 ## **Status**
  Project Completed  
  High Availability Achieved using Azure Load Balancer
+
