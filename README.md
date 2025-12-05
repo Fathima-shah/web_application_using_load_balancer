@@ -1,132 +1,98 @@
-Deploy a highly available web application in Azure using:
-- Two Virtual Machines in an availability set
-- Azure Load Balancer for traffic distribution
+# **Highly Available Web Application Using Azure Load Balancer**
+
+This project demonstrates hosting a web application on two Windows Server Virtual Machines running IIS, placed inside an Availability Set, and load balanced using a Public Azure Load Balancer to achieve high availability and fault tolerance.
 
 ---
 
-## 🔹 Step 1: Create a Virtual Network
+## **1. Provisioned Virtual Network & Resource Group**
 
-1. Go to **Azure Portal**
-2. Search for **Virtual Network**
-3. Click **Create**
-4. Select/Enter:
-   - **Resource Group:** `rg`
-   - **VNet Name:** `vnet`
-   - **Region:** *US East*
-5. Add default **Subnet**
-6. Click **Review + Create**
-7. Click **Create**
+- Created a new **Resource Group (`rg`)**
+- Created a **Virtual Network (`vnet`)**
+- Region selected: **US East**
+- Default subnet added automatically
+- Deployment completed successfully
 
 ---
 
-## 🔹 Step 2: Create Virtual Machines
+## **2. Created Windows Virtual Machines (VM1 & VM2)**
 
-### ➤ VM1 Creation
-1. Search **Virtual Machine**
-2. Click **Create**
-3. Select/Enter:
-   - **Resource Group:** `rg`
-   - **VM Name:** `vm1`
-   - **Region:** *US East*
-4. Under Availability:
-   - Choose **Availability Set**
-   - Click **Create new**
-   - Name it **USset**
-5. Instance Settings:
-   - **Username:** `<vm-userername>`
-   - **Password:** `<secure-password>`
-6. Networking:
-   - Select **VNet:** `vnet`
-   - Select **Subnet:** *default*
-7. **Disable Boot Diagnostics**
-8. Click **Review + Create** → **Create**
+### **VM1 Configuration**
+- Deployed a **Windows Server Virtual Machine** named `vm1`
+- Selected **US East** region
+- Chose **Availability Set** option
+- Created a new availability set: **`USset`**
+- Set a custom secure username & password *(not shared for security purposes)*
+- Attached VM to `vnet` and default subnet
+- Disabled **Boot Diagnostics**
+- Deploy completed successfully
 
-### ➤ VM2 Creation
-📌 Repeat the same steps as VM1 with:
-- **VM Name:** `vm2`
+### **VM2 Configuration**
+- Created the second VM named `vm2`
+- Same region: **US East**
+- Selected the same availability set: **`USset`**
+- Chose the same `vnet` and default subnet
+- Disabled **Boot Diagnostics**
+- Deployment completed successfully
 
 ---
 
-## 🔹 Step 3: Install Web Server on VM1 & VM2
+## **3. Installed IIS Web Server on VM1 & VM2**
 
-### ➤ Connect to each VM
-1. Go to **VM Overview**
-2. Click **Connect > RDP**
-3. Download RDP file and login with:
-Username: <vm-username>
-Password: <secure-password>
-
-markdown
-Copy code
-
-### ➤ Install IIS Web Server
-1. Open **Server Manager**
-2. Click **Add roles and features**
-3. Select:
-- **Web Server (IIS)**
-- Add features → Finish installation
-
-### ➤ Deploy Web Content
-1. Open **File Explorer**
-2. Go to:
+- Connected to both VMs using **RDP**
+- Opened **Server Manager**
+- Installed **Web Server (IIS)** role
+- Uploaded website files into:
 C:\inetpub\wwwroot
-
-markdown
-Copy code
-3. Upload/paste your web application files.
-
-### ➤ Enable HTTP Traffic in Azure
-1. Go to **VM → Networking**
-2. Add **Inbound Port Rule**
-3. Change **Port** to **HTTP (Port 80)**
-4. Save
-5. Copy VM Public IP → Check on browser
-
-📌 Repeat these steps for **vm2** also.
+- Configured **Inbound Port Rule (HTTP - Port 80)** in Azure’s VM Networking
+- Verified IIS webpage access using each VM’s public IP in the browser
 
 ---
 
-## 🔹 Step 4: Create Load Balancer
+## **4. Configured Azure Public Load Balancer**
 
-1. Search **Load Balancer**
-2. Click **Create**
-3. Select/Enter:
-- **Resource Group:** `rg`
-- **Name:** `lb`
-- **SKU:** Standard
-- **Type:** Public
-
-### ➤ Add Frontend IP
-- Name: `ip`
-- Create Public IP:
-- Name: `newip`
-- Save
-
-### ➤ Create Backend Pool
-- Name: `bpl`
-- Select **VNet: `vnet`**
-- Add **VM1** and **VM2**
-- Save
-
-### ➤ Create Health Probe
-- Name: `hp`
-- Protocol: TCP
-- Port: 80
-- Save
-
-### ➤ Add Load Balancing Rule
-- Name: `LBrule`
-- **Frontend IP:** `ip`
-- **Backend Pool:** `bpl`
-- **Protocol:** TCP
-- **Port:** 80
-- **Backend Port:** 80
-- Select **Health Probe:** `hp`
-- Save
-
-### ➤ Test
-- Go to **Load Balancer Overview**
-- Copy the Public IP
-- Paste in browser → Web App should load via load balancer
+- Created a **Standard Public Load Balancer (`lb`)**
+- Configured a **Frontend IP** named `ip` with a new public IP `newip`
+- Created a **Backend Pool (`bpl`)**
+- Added both virtual machines: `vm1`, `vm2`
+- Created a **Health Probe** named `hp` on **TCP Port 80**
+- Added a **Load Balancing Rule (`LBrule`)** with:
+- Protocol: **TCP**
+- Frontend Port: **80**
+- Backend Port: **80**
+- Health Probe: `hp`
+- Saved configuration and deployed
 
 ---
+
+##  **Final Output**
+
+- Accessed the web application using the **Load Balancer Public IP**
+- The load balancer routed traffic between the two VMs
+- Application remained accessible even if one VM is unavailable
+- High Availability successfully achieved
+
+---
+
+## **Project Screenshots**
+
+-Virtual Network & VM Provisioning
+- Load Balancer Setup & Backend Pool Configuration
+- IIS Installation & Website Deployment
+- HTTP Port Configuration & Final Web Test
+
+---
+
+# **Skills Gained**
+
+- Azure Load Balancer (Standard Public)
+- IIS Web Hosting on Windows Server
+- Availability Set & Fault Domain Concepts
+- Virtual Machine Management
+- Azure Networking & Inbound Rules
+- High Availability Architecture Implementation
+
+---
+
+## **Status**
+ Project Completed  
+ High Availability Achieved using Azure Load Balancer
